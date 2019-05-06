@@ -16,6 +16,9 @@ class TableViewController: UITableViewController {
         emoji(symbol: "😎", name: "Glasses", description: "A typical smiley face with glasses", usage: "when is sunny and happy"),
         emoji(symbol: "👻", name: "Ghost", description: "A ghost", usage: "scary ghost")
     ]
+    
+    var colectionColor = [colores(colorPrimario: "Azul", colorSecundario: "Naranja"),colores(colorPrimario: "Rojo", colorSecundario: "Verde")]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == 0 {//en el indice 0
             return emojis.count
         }else{
             return 0
