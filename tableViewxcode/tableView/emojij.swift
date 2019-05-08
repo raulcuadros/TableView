@@ -20,7 +20,3 @@ class emoji{
     }
 }
 
-struct colores{
-    var colorPrimario: String
-    var colorSecundario: String
-}

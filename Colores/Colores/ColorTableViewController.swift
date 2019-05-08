@@ -1,23 +1,34 @@
 //
-//  TableViewController.swift
-//  tableView
+//  ColorTableViewController.swift
+//  Colores
 //
-//  Created by 2019-2 on 5/6/19.
+//  Created by 2019-2 on 5/8/19.
 //  Copyright © 2019 2019-2. All rights reserved.
 //
 
 import UIKit
 
-class TableViewController: UITableViewController {
-    
-    var emojis: [emoji] = [
-        emoji(symbol: "😕", name: "Grinning Face", description: "A typical smiley face", usage: "happiness"),
-        emoji(symbol: "😍", name: "Heart Eyes", description: "A smiley face with love", usage: "love of something attractive"),
-        emoji(symbol: "😎", name: "Glasses", description: "A typical smiley face with glasses", usage: "when is sunny and happy"),
-        emoji(symbol: "👻", name: "Ghost", description: "A ghost", usage: "scary ghost")
+class ColorTableViewController: UITableViewController {
+
+    let coloresPrimarios:[Color] = [
+        Color(Nombre: "Azul", Composicion: nil),
+        Color(Nombre: "Rojo", Composicion: nil),
+        Color(Nombre: "Amarillo", Composicion: nil)
     ]
     
-
+    let coloresSecundarios:[Color] = [
+        Color(Nombre: "Morado", Composicion: ["Rojo","Azul"]),
+        Color(Nombre: "Naranja", Composicion: ["Rojo","Amarillo"]),
+        Color(Nombre: "Verde", Composicion: ["Azul","Amarillo"])
+    ]
+    
+    let coloresTerciarios:[Color] = [
+        Color(Nombre: "Azul Turquesa", Composicion: ["Verde","Azul"]),
+        Color(Nombre: "Amarillo Huevo", Composicion: ["Amarillo","Naranja"])
+    ]
+    
+    let secciones = ["Primarios","Secundarios","Terciarios"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,37 +36,41 @@ class TableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1 //1 sola seccion
+        return secciones.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return secciones[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {//en el indice 0
-            return emojis.count
+        if section == 0{
+            return coloresPrimarios.count
+        } else if section == 1{
+            return coloresSecundarios.count
+        }else if section == 2 {
+            return coloresTerciarios.count
         }else{
             return 0
         }
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let emoji = emojis[indexPath.row]
-        cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
-        cell.detailTextLabel?.text = emoji.description
-        
 
         return cell
     }
- 
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -77,15 +92,12 @@ class TableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedEmoji = emojis.remove(at: fromIndexPath.row)
-        emojis.insert(movedEmoji, at: to.row)
-        tableView.reloadData()
 
     }
-
+    */
 
     /*
     // Override to support conditional rearranging of the table view.
